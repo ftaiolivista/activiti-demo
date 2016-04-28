@@ -12,7 +12,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "hashicorp/precise64"
+  config.vm.box = "ubuntu/trusty64"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -69,23 +69,23 @@ Vagrant.configure(2) do |config|
     sudo apt-get install -y openjdk-7-jre
     sudo apt-get install -y openjdk-7-jdk
 
-    wget http://apache.go-parts.com/tomcat/tomcat-8/v8.0.24/bin/apache-tomcat-8.0.24.zip
-    unzip apache-tomcat-8.0.24.zip -d /opt
-    ln -s /opt/apache-tomcat-8.0.24 /opt/tomcat
+    wget http://apache.go-parts.com/tomcat/tomcat-8/v8.0.33/bin/apache-tomcat-8.0.33.zip
+    unzip apache-tomcat-8.0.33.zip -d /opt
+    ln -s /opt/apache-tomcat-8.0.33 /opt/tomcat
 
     groupadd tomcat
     useradd -g tomcat -s /usr/sbin/nologin -m -d /home/tomcat tomcat
-    chown -R tomcat:tomcat /opt/apache-tomcat-8.0.24
+    chown -R tomcat:tomcat /opt/apache-tomcat-8.0.33
 
     echo 'export CATALINA_HOME=/opt/tomcat' >> /etc/profile
     echo 'export CATALINA_BASE=/opt/tomcat' >> /etc/profile
 
-    wget https://github.com/Activiti/Activiti/releases/download/activiti-5.18.0/activiti-5.18.0.zip
-    unzip activiti-5.18.0.zip -d /opt
-    ln -s /opt/activiti-5.18.0 /opt/activiti
+    wget https://github.com/Activiti/Activiti/releases/download/5.20.0/activiti-5.20.0.zip
+    unzip activiti-5.20.0.zip -d /opt
+    ln -s /opt/activiti-5.20.0.zip /opt/activiti
 
-    cp /opt/activiti/wars/activiti-explorer.war /opt/tomcat/webapps
-    cp /opt/activiti/wars/activiti-rest.war /opt/tomcat/webapps
+    cp /opt/activiti-5.20.0/wars/activiti-explorer.war /opt/tomcat/webapps
+    cp /opt/activiti-5.20.0/wars/activiti-rest.war /opt/tomcat/webapps
 
     su -p -s /bin/sh tomcat /opt/tomcat/bin/catalina.sh start
   SHELL
